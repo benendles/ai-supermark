@@ -1,0 +1,59 @@
+# ==========================
+# Node.js
+# ==========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+.env          # environment variables (DB credentials, API keys)
+/dist
+/build
+
+# ==========================
+# Python
+# ==========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+env/
+venv/
+ENV/
+*.egg-info/
+*.egg
+*.log
+
+# ==========================
+# Database (PostgreSQL)
+# ==========================
+# Ignore local database files (if using SQLite for local testing)
+*.sqlite3
+*.db
+
+# Ignore local migration caches (optional)
+migrations/__pycache__/
+migrations/*.pyc
+
+# ==========================
+# IDEs / Editors
+# ==========================
+# VS Code
+.vscode/
+
+# JetBrains IDEs
+.idea/
+
+# Mac OS
+.DS_Store
+
+# Windows
+Thumbs.db
+<<<<<<< HEAD
+.env
+=======
+.env
+venv/
+node_modules
+>>>>>>> d7f73a98388647a81fab7955208ac35358351d6c
