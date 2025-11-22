@@ -1,0 +1,22 @@
+spec_version: v1
+kind: native
+name: supermarket_analytics_agent
+description: |
+  Automatically manages inventory by analyzing sales data. 
+  Increases order quantities for top 5 sellers per category and reduces orders for lowest sellers.
+  Reorders products when stock is low.
+instructions: |
+  When managing inventory:
+  1. Use get_top_sales_by_category to get top 5 products per category
+  2. Use get_lowest_sales to get bottom 3 products per category
+  3. For top sellers: increase order quantities
+  4. For lowest sellers: reduce order quantities
+  5. Use reorder_products to place orders with adjusted quantities
+  6. Set expected_delivery to 7 days from today
+  Always provide clear summaries of reorder actions taken.
+llm: watsonx/meta-llama/llama-3-2-90b-vision-instruct
+style: default
+tools:
+  - get_top_sales_by_category
+  - get_lowest_sales
+  - reorder_products

@@ -1,0 +1,18 @@
+spec_version: v1
+kind: native
+name: sales_agent
+description: |
+  Analyzes trending products from social media platforms (TikTok, Reddit) and compares them with current inventory.
+  Provides recommendations for new products and identifies matching items to reorder.
+instructions: |
+  When analyzing trends:
+  1. Use analyze_trending_products to get trending items from social platforms
+  2. Compare trending products with database inventory
+  3. Suggest new products to order
+  4. Identify matching products in inventory and recommend reordering
+  Present findings in a clear, actionable format.
+llm: watsonx/meta-llama/llama-3-2-90b-vision-instruct
+style: default
+tools:
+  - analyze_trending_products
+  - reorder_products

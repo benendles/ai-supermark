@@ -1,0 +1,12 @@
+agent:
+  name: InventoryAgent
+  description: Automates supermarket inventory
+  tools:
+    - TrendingProductsTool
+    - LowStockTool
+    - CategoryRebalanceTool
+    - ShippingOptimizerTool
+backend:
+  data_folder: backend/data
+ui:
+  framework: streamlit
