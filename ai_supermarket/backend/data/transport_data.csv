@@ -1,0 +1,21 @@
+transport_id,origin,destination,distance_km,avg_delivery_days,transport_mode,cost_usd,carrier
+T001,Warehouse A,Store 1,12,1,Truck,14.50,DHL
+T002,Warehouse A,Store 2,26,2,Truck,24.10,UPS
+T003,Warehouse B,Store 3,8,1,Motorbike,6.80,DoorDash
+T004,Warehouse C,Store 4,52,3,Truck,48.00,FedEx
+T005,Warehouse B,Store 5,18,1,Van,16.40,LocalCourier
+T006,Warehouse A,Store 6,40,2,Truck,36.20,UPS
+T007,Warehouse C,Store 1,55,3,Truck,50.10,DHL
+T008,Warehouse A,Store 7,6,1,Motorbike,5.90,DoorDash
+T009,Warehouse B,Store 8,32,2,Van,28.00,LocalCourier
+T010,Warehouse C,Store 9,70,4,Truck,64.30,FedEx
+T011,Port Terminal,Warehouse A,15,1,Truck,20.20,Maersk
+T012,Port Terminal,Warehouse B,28,2,Truck,33.50,Maersk
+T013,Airport Hub,Warehouse C,12,1,Air Cargo,42.00,EthiopianAir
+T014,Warehouse A,Store 10,20,1,Van,17.90,LocalCourier
+T015,Warehouse B,Store 11,48,3,Truck,44.70,UPS
+T016,Warehouse C,Store 12,36,2,Truck,32.90,FedEx
+T017,Warehouse A,Store 13,14,1,Motorbike,7.10,DoorDash
+T018,Warehouse B,Store 14,78,4,Truck,73.20,DHL
+T019,Warehouse C,Store 15,22,1,Van,18.50,LocalCourier
+T020,Warehouse A,Store 16,65,3,Truck,59.00,FedEx
