@@ -3,7 +3,7 @@ import requests
 
 # Credentials
 WO_INSTANCE = "https://api.eu-central-1.dl.watson-orchestrate.ibm.com/instances/20251122-1952-5015-406d-88c46ca8b12a"
-WO_API_KEY = "azE6dXNyXzcwMzczYTg0LWQwZGMtMzU1MC04N2MzLTc3MjI5MmIzNDQwZjo2NjBCWmJOQitTeCtRRWhOODFCbkNETGZldzR3Z2xJeGVqeDR4TW1udFY4PTo2VFkz"
+WO_API_KEY = "azE6dXNyXzcwMzczYTg0LWQwZGMtMzU1MC04N2MzLTc3MjI5MmIzNDQwZjpZV2lzU1ZqL0p6T1pvSFJHbHlDQlRibkNiSXRCUWN1M1VEZ0lRSU9pTWxVPTpOcFpr"
 
 # Session state initialization
 if 'api_url' not in st.session_state:
