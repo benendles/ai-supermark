@@ -22,8 +22,20 @@ def reorder_products(product_ids: List[str], quantities: List[int], expected_del
 
     # Get path to CSV files relative to this tool file
     base_path = os.path.dirname(os.path.abspath(__file__))
-    csv_path = os.path.join(base_path, 'data', 'products.csv')
-    orders_csv_path = os.path.join(base_path, 'data', 'orders.csv')
+    data_dir = os.path.join(base_path, 'data')
+    csv_path = os.path.join(data_dir, 'products.csv')
+    orders_csv_path = os.path.join(data_dir, 'orders.csv')
+    
+    # Ensure data directory exists
+    os.makedirs(data_dir, exist_ok=True)
+    
+    # Check if products file exists
+    if not os.path.exists(csv_path):
+        return {
+            "success": False,
+            "orders": [],
+            "error": f"Products CSV file not found: {csv_path}"
+        }
     
     # Read the product CSV file
     df = pd.read_csv(csv_path)
@@ -77,9 +89,14 @@ def reorder_products(product_ids: List[str], quantities: List[int], expected_del
     
     # Append orders to orders CSV
     orders_df = pd.DataFrame(orders)
-    if os.path.exists(orders_csv_path):
-        existing_orders = pd.read_csv(orders_csv_path)
-        orders_df = pd.concat([existing_orders, orders_df], ignore_index=True)
+    if os.path.exists(orders_csv_path) and os.path.getsize(orders_csv_path) > 0:
+        try:
+            existing_orders = pd.read_csv(orders_csv_path)
+            if not existing_orders.empty:
+                orders_df = pd.concat([existing_orders, orders_df], ignore_index=True)
+        except (pd.errors.EmptyDataError, Exception):
+            # If file is empty or corrupted, just use new orders
+            pass
     orders_df.to_csv(orders_csv_path, index=False)
     
     return {"success": True, "orders": orders}

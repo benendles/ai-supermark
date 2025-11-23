@@ -3,3 +3,6 @@ pandas
 pyyaml
 ibm-watsonx-orchestrate>=1.6.0
 requests
+python-dotenv
+flask
+flask-cors

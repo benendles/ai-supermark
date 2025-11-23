@@ -17,7 +17,21 @@ def check_low_stock(threshold: int = 50) -> dict:
     """
     # Get path relative to this Python file
     base_path = os.path.dirname(os.path.abspath(__file__))
-    csv_path = os.path.join(base_path, 'data', 'products.csv')
+    data_dir = os.path.join(base_path, 'data')
+    csv_path = os.path.join(data_dir, 'products.csv')
+    
+    # Ensure data directory exists
+    os.makedirs(data_dir, exist_ok=True)
+    
+    # Check if file exists
+    if not os.path.exists(csv_path):
+        return {
+            'message': f'Products CSV file not found: {csv_path}',
+            'low_stock_products': [],
+            'threshold': threshold,
+            'count': 0,
+            'error': f'Products file missing at {csv_path}'
+        }
     
     # Read the CSV file
     df = pd.read_csv(csv_path)
@@ -28,12 +42,17 @@ def check_low_stock(threshold: int = 50) -> dict:
     # Filter products below threshold
     low_stock_products = df[df[stock_col] < threshold]
     
+    # Limit to first 20 products for processing
+    total_count = len(low_stock_products)
+    low_stock_products = low_stock_products.head(20)
+    
     # Convert to dictionary format
     result = {
-        'message': f'Found {len(low_stock_products)} products below threshold of {threshold}',
+        'message': f'Found {total_count} products below threshold of {threshold}. Processing first 20 products.',
         'low_stock_products': low_stock_products.to_dict('records'),
         'threshold': threshold,
-        'count': len(low_stock_products)
+        'count': len(low_stock_products),
+        'total_found': total_count
     }
     
     return result

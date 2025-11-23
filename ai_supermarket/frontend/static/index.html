@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Supermarket Inventory Manager</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-store"></i> AI Supermarket Inventory Manager</h1>
+                <p class="subtitle">Powered by WatsonX Orchestrate</p>
+            </div>
+            <button class="config-btn" id="configBtn">
+                <i class="fas fa-cog"></i> Configuration
+            </button>
+        </header>
+
+        <!-- Configuration Modal -->
+        <div id="configModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2><i class="fas fa-cog"></i> Configuration</h2>
+                    <button class="close-btn" id="closeConfig">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="apiUrl">
+                            <i class="fas fa-link"></i> API URL (Instance URL)
+                        </label>
+                        <input type="text" id="apiUrl" placeholder="https://api.eu-central-1.dl.watson-orchestrate.ibm.com/instances/YOUR_ID">
+                        <small>Your WatsonX Orchestrate instance URL (without /api)</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="apiKey">
+                            <i class="fas fa-key"></i> API Key
+                        </label>
+                        <input type="password" id="apiKey" placeholder="Enter your API key">
+                        <small>Your WatsonX Orchestrate API key</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="agentId">
+                            <i class="fas fa-robot"></i> Agent ID
+                        </label>
+                        <input type="text" id="agentId" placeholder="supermarket_inventory_manager_agent">
+                        <small>The ID of your agent</small>
+                    </div>
+                    <div class="config-status" id="configStatus"></div>
+                    <button class="btn btn-primary" id="saveConfig">
+                        <i class="fas fa-save"></i> Save Configuration
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <h3><i class="fas fa-bolt"></i> Quick Actions</h3>
+                <div class="quick-actions">
+                    <button class="action-btn" data-action="check_low_stock">
+                        <i class="fas fa-search"></i> Check Low Stock
+                    </button>
+                    <button class="action-btn" data-action="get_lowest_sales">
+                        <i class="fas fa-chart-line-down"></i> Get Lowest Sales
+                    </button>
+                    <button class="action-btn" data-action="get_top_sales">
+                        <i class="fas fa-chart-line-up"></i> Get Top Sales
+                    </button>
+                    <button class="action-btn" data-action="analyze_christmas">
+                        <i class="fas fa-snowflake"></i> Analyze Christmas Trends
+                    </button>
+                    <button class="action-btn" data-action="reorder_low_stock">
+                        <i class="fas fa-shopping-cart"></i> Reorder Low Stock
+                    </button>
+                    <button class="action-btn" data-action="full_workflow">
+                        <i class="fas fa-tasks"></i> Full Workflow
+                    </button>
+                </div>
+                <div class="sidebar-footer">
+                    <div class="status-indicator" id="statusIndicator">
+                        <i class="fas fa-circle"></i> <span id="statusText">Ready</span>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Chat Area -->
+            <main class="chat-area">
+                <div class="chat-header">
+                    <h2><i class="fas fa-comments"></i> Chat with Agent</h2>
+                    <button class="btn btn-secondary" id="clearChat">
+                        <i class="fas fa-trash"></i> Clear Chat
+                    </button>
+                </div>
+                <div class="messages" id="messages">
+                    <div class="message bot-message">
+                        <div class="message-content">
+                            <i class="fas fa-robot"></i>
+                            <p>Hello! I'm your AI Supermarket Inventory Manager. How can I help you today?</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-input-container">
+                    <div class="chat-input-wrapper">
+                        <input type="text" id="chatInput" placeholder="Type your message here..." autocomplete="off">
+                        <button class="send-btn" id="sendBtn">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
+

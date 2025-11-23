@@ -10,7 +10,20 @@ def get_top_sales_by_category() -> dict:
     
     # Get path to CSV file relative to this tool file
     base_path = os.path.dirname(os.path.abspath(__file__))
-    csv_path = os.path.join(base_path, 'data', 'sale.csv')
+    data_dir = os.path.join(base_path, 'data')
+    csv_path = os.path.join(data_dir, 'sales.csv')
+    
+    # Ensure data directory exists
+    os.makedirs(data_dir, exist_ok=True)
+    
+    # Check if file exists
+    if not os.path.exists(csv_path):
+        return {
+            'message': f'Sales CSV file not found: {csv_path}',
+            'top_sales_by_category': [],
+            'count': 0,
+            'error': f'Sales file missing at {csv_path}'
+        }
     
     # Read the CSV file
     df = pd.read_csv(csv_path)
@@ -26,11 +39,16 @@ def get_top_sales_by_category() -> dict:
         lambda x: x.nlargest(5, 'sales_count')
     ).reset_index(drop=True)
     
+    # Limit to first 20 products for processing
+    total_count = len(top_sales)
+    top_sales = top_sales.head(20)
+    
     # Convert to dictionary format
     result = {
-        'message': f'Found top {len(top_sales)} selling products across all categories',
+        'message': f'Found top {total_count} selling products across all categories. Processing first 20 products.',
         'top_sales_by_category': top_sales.to_dict('records'),
-        'count': len(top_sales)
+        'count': len(top_sales),
+        'total_found': total_count
     }
     
     return result
