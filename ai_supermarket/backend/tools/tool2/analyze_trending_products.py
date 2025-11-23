@@ -93,8 +93,8 @@ def analyze_simulated_sales() -> Dict:
     # Limit to first 20 products for each category
     total_to_reorder = len(products_to_reorder)
     total_suggestions = len(new_product_suggestions)
-    products_to_reorder = products_to_reorder[:20]
-    new_product_suggestions = new_product_suggestions[:20]
+    products_to_reorder = products_to_reorder[:5]
+    new_product_suggestions = new_product_suggestions[:5]
     
     return {
         'products_to_reorder': products_to_reorder,

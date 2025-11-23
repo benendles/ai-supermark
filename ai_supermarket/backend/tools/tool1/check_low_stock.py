@@ -44,7 +44,7 @@ def check_low_stock(threshold: int = 50) -> dict:
     
     # Limit to first 20 products for processing
     total_count = len(low_stock_products)
-    low_stock_products = low_stock_products.head(20)
+    low_stock_products = low_stock_products.head(5)
     
     # Convert to dictionary format
     result = {
