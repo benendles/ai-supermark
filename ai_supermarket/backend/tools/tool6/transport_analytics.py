@@ -34,8 +34,10 @@ def find_cheapest_transport(product_name: str) -> dict:
         }
     
     # Merge with transport options
-    options = product_suppliers.merge(transport_df, on='supplier_id')
-    options['total_cost'] = options['unit_price'] + options['shipping_cost']
+    options = product_suppliers.merge(transport_df, on='supplier_id', suffixes=('_supplier', '_transport'))
+    print("DEBUG - Available columns:", options.columns.tolist())
+    print("DEBUG - First row:", options.head(1).to_dict())
+    options['total_cost'] = options['cost_per_unit'] + options['cost_per_unit']
     
     # Find cheapest option
     cheapest = options.loc[options['total_cost'].idxmin()]
@@ -43,11 +45,9 @@ def find_cheapest_transport(product_name: str) -> dict:
     # Build detailed explanation
     explanation = f"""
 **Decision Rationale for {product_name}:**
-- Selected Supplier: {cheapest['supplier_name']} (${cheapest['unit_price']:.2f}/unit)
+- Selected Supplier: {cheapest['supplier']} (${cheapest['cost_per_unit']:.2f}/unit)
 - Chose Transport: {cheapest['transport_method']}
-  * Shipping cost: ${cheapest['shipping_cost']:.2f}
-  * Delivery time: {cheapest['delivery_days']} days
-  * Reliability: {cheapest['reliability_score']}%
+  * Shipping cost: ${cheapest['fixed_cost']:.2f}
 - Total cost: ${cheapest['total_cost']:.2f}
 - Compared {len(options)} alternatives
     """
@@ -56,7 +56,7 @@ def find_cheapest_transport(product_name: str) -> dict:
     total_cost = float(options['total_cost'].min())
 
     result = {
-        "supplier": str(cheapest['supplier_name']),
+        "supplier": str(cheapest['supplier']),
         "transport": str(cheapest['transport_method']),
         "total_cost": total_cost,
         "explanation": explanation
